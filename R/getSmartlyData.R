@@ -29,8 +29,16 @@ getSmartlyData <- function(start,
                             creative = NULL, #vector (multiple): creative_meta.call_to_action, creative_meta, creative_meta.type, creative_meta.post_type, creative_meta.name, creative_meta.picture, creative_meta.post_fb_id, creative_meta.post_fb_link, creative_meta.text, creative_meta.title, creative_meta.link, creative_meta.url_tags
                             facebook = NULL, #one of (single): age, country, gender, age_gender, placement, cross_device, region, hourly_stats_aggregated_by_advertiser_time_zone, hourly_stats_aggregated_by_audience_time_zone
                             apiToken,
+                            attribution = "1d",
                             metrics){
         #build metrics query
+        if(attribution == "7d"){
+          attribution <- "%7B%22click%22%3A%227d_click%22%2C%22view%22%3Afalse%7D"
+        }elseif(attribution == "28d"){
+          attribution <- "%7B%22click%22%3A%2228d_click%22%2C%22view%22%3Afalse%7D"
+        }else{
+          attribution <- "%7B%22click%22%3A%221d_click%22%2C%22view%22%3Afalse%7D"
+        }
         metrics <- paste(metrics, sep="", collapse="%2C")
         #build groupby query
         #if account Info
@@ -73,7 +81,9 @@ getSmartlyData <- function(start,
                      start,
                      "%3A",
                      end,
-                     "&attribution=%7B%22click%22%3A%221d_click%22%2C%22view%22%3Afalse%7D&metrics=",
+                     "&attribution=",
+                     attribution,
+                     "&metrics=",
                      metrics,
                      "&filters=%5B%5D&filter_type=%24and&groupby=",
                      groupby,
