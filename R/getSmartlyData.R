@@ -34,7 +34,7 @@ getSmartlyData <- function(start,
         #build metrics query
         if(attribution == "7d"){
           attribution <- "%7B%22click%22%3A%227d_click%22%2C%22view%22%3Afalse%7D"
-        }elseif(attribution == "28d"){
+        }else if(attribution == "28d"){
           attribution <- "%7B%22click%22%3A%2228d_click%22%2C%22view%22%3Afalse%7D"
         }else{
           attribution <- "%7B%22click%22%3A%221d_click%22%2C%22view%22%3Afalse%7D"
