@@ -75,7 +75,7 @@ getSmartlyData <- function(start,
         }
         groupby <- paste(groupby, "&meta=account_id%2Ccampaign_id", sep="")
         #build url
-        url <- paste("https://api.smartly.io/v1.0/stats?account_id=",
+        url <- paste("https://stats-api.smartly.io/api/v1.0/stats?account_id=",
                      accountID,
                      "&stats=",
                      start,
